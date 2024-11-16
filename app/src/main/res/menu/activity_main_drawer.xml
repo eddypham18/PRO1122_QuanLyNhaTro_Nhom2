@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item android:title="Admin"
+            android:id="@+id/nav_Admin"
+            android:visible="false">
+            <menu>
+                <item
+                    android:id="@+id/nav_QLUser"
+                    android:icon="@drawable/baseline_group_24"
+                    android:title="Quản lý Users"/>
+                <item
+                    android:id="@+id/nav_QLBaidang"
+                    android:icon="@drawable/baseline_featured_play_list_24"
+                    android:title="Quản lý bài đăng"/>
+                <item
+                    android:id="@+id/nav_QLHotro"
+                    android:icon="@drawable/baseline_contact_mail_24"
+                    android:title="Quản lý yêu cầu hỗ trợ"/>
+            </menu>
+        </item>
+        <item android:title="Quản lý"
+            android:id="@+id/nav_QL"
+            android:visible="false">
+            <menu>
+                <item
+                    android:id="@+id/nav_QLPhong"
+                    android:icon="@drawable/baseline_apartment_24"
+                    android:title="Quản lý phòng"/>
+                <item
+                    android:id="@+id/nav_QLHopDong"
+                    android:icon="@drawable/baseline_list_alt_24"
+                    android:title="Quản lý Hợp đồng"/>
+                <item
+                    android:id="@+id/nav_QLThanhToan"
+                    android:icon="@drawable/baseline_payment_24"
+                    android:title="Quản lý Thanh toán"/>
+                <item
+                    android:id="@+id/nav_QLThuChi"
+                    android:icon="@drawable/baseline_attach_money_24"
+                    android:title="Quản lý Thu chi"/>
+            </menu>
+        </item>
+        <item android:title="Người dùng"
+            android:id="@+id/nav_User"
+            android:visible="false">
+            <menu>
+                <item
+                    android:id="@+id/nav_HoTro"
+                    android:icon="@drawable/baseline_support_agent_24"
+                    android:title="Gửi yêu cầu hỗ trợ"/>
+                <item
+                    android:id="@+id/nav_DoiMK"
+                    android:icon="@drawable/baseline_vpn_key_24"
+                    android:title="Đổi mật khẩu"/>
+                <item
+                    android:id="@+id/nav_DangXuat"
+                    android:icon="@drawable/baseline_logout_24"
+                    android:title="Đăng xuất"/>
+            </menu>
+        </item>
+        <item
+            android:id="@+id/nav_login_prompt"
+            android:title="Vui lòng đăng nhập..."
+            android:visible="true"/>
+
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/baseline_login_24"
+            android:title="Đăng nhập"
+            android:visible="true"/>
+    </group>
+</menu>

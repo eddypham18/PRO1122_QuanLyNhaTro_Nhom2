@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ForgotPwdActivity"
+    android:gravity="center|top"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quên mật khẩu"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:layout_marginTop="112dp"
+        android:layout_marginBottom="100dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="  Vui lòng nhập tài khoản cần tìm lại: "/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilTaiKhoan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtTaiKhoan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tài khoản"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="  Vui lòng nhập số điện thoại theo tài khoản: "/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilSDT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtSDT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Số điện thoại"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGuiYC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GỬI YÊU CẦU"
+        android:backgroundTint="@color/maincolor"
+        app:cornerRadius="8dp"
+        android:layout_marginRight="5dp"
+        />
+
+
+</LinearLayout>
