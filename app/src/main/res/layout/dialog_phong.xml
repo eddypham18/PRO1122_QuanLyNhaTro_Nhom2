@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitleDialogToaNha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="THÊM PHÒNG"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="24dp"
+            android:layout_margin="10dp" />
+
+        <!-- Số phòng -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtSoPhong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập số phòng" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Diện tích -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtDienTich"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Diện tích" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Giá thuê -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtGiaThue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Giá thuê" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Mô tả -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtMoTa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mô tả"
+                android:inputType="textMultiLine"
+                android:minLines="4"
+                android:gravity="top" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinnerTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Thêm ảnh -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ảnh phòng:"
+            android:layout_marginBottom="8dp" />
+
+        <ImageView
+            android:id="@+id/imgPhong"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_img" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnChonAnh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chọn ảnh"
+            android:backgroundTint="#03A9F4"
+            app:cornerRadius="8dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Tạo phòng -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TẠO"
+            android:backgroundTint="@color/maincolor"
+            app:cornerRadius="8dp" />
+
+    </LinearLayout>
+</ScrollView>

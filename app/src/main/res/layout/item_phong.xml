@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="#E3F2FD"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Nội dung bên trái và trung tâm -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/btnDelete">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_apartment_24"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:gravity="left">
+
+                <!-- Tên phòng -->
+                <TextView
+                    android:id="@+id/tvSoPhong"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phòng"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Số phòng -->
+                <TextView
+                    android:id="@+id/tvDienTich"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diện tích"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvTrangThai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trạng thái thuê: "
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvGiaThue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Giá thuê: "
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tvDiaDiem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Địa điểm: "
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trạng thái phê duyệt: "
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tvTrangThaiHopDong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chưa duyệt"
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="5dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Biểu tượng xóa ở góc phải -->
+        <ImageView
+            android:id="@+id/btnDelete"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
+            android:src="@drawable/baseline_delete_forever_24" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
