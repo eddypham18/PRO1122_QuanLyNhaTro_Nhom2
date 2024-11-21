@@ -39,7 +39,7 @@ public class UserDAO {
                             cursor.getString(6),
                             cursor.getString(7),
                             cursor.getInt(8),
-                            cursor.getInt(9),
+                            cursor.getString(9),
                             cursor.getString(10)
                     ));
                 } while (cursor.moveToNext());
@@ -90,15 +90,65 @@ public class UserDAO {
     public boolean updatePassword(String username, String newPassword) {
         SQLiteDatabase db = dBhelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("password", newPassword);  // Cập nhật mật khẩu mới
+        contentValues.put("password", newPassword);
 
-        // Cập nhật mật khẩu của người dùng dựa trên username
         int result = db.update("User", contentValues, "username = ?", new String[]{username});
 
-        // Kiểm tra kết quả
-        return result > 0;  // Nếu cập nhật thành công, trả về true, ngược lại false
+        return result > 0;
     }
 
+
+    // Cập nhật trạng thái hoạt động của người dùng
+    public boolean updateTrangThai(int userId, int trangThai) {
+        SQLiteDatabase db = dBhelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("trangThai", trangThai);
+        return db.update("User", values, "User_ID = ?", new String[]{String.valueOf(userId)}) > 0;
+    }
+
+
+    public User getUserByUserID(int userId) {
+        SQLiteDatabase db = dBhelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM User WHERE User_ID = ?", new String[]{String.valueOf(userId)});
+
+        User user = null;  // Biến để lưu đối tượng User
+
+        if (cursor != null && cursor.moveToFirst()) {
+            // Lấy thông tin từ cursor và tạo đối tượng User
+            user = new User(
+                    cursor.getInt(cursor.getColumnIndexOrThrow("User_ID")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("Username")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("Password")),
+                    cursor.getInt(cursor.getColumnIndexOrThrow("VaiTro")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("HoTen")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("NgaySinh")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("Email")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("SDT")),
+                    cursor.getInt(cursor.getColumnIndexOrThrow("TrangThai")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("CCCD")),
+                    cursor.getString(cursor.getColumnIndexOrThrow("NgayTao"))
+            );
+        }
+
+        cursor.close();  // Đóng cursor sau khi sử dụng
+        db.close();  // Đóng kết nối cơ sở dữ liệu
+
+        return user;  // Trả về đối tượng User nếu tìm thấy, hoặc null nếu không tồn tại
+    }
+
+    public boolean updateUserInfo(User user) {
+        SQLiteDatabase db = dBhelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("Username", user.getUsername());
+        values.put("NgaySinh", user.getNgaySinh());
+        values.put("Email", user.getEmail());
+        values.put("SDT", user.getSdt());
+        values.put("CCCD", user.getCccd());
+
+        int result = db.update("User", values, "User_ID = ?", new String[]{String.valueOf(user.getUserId())});
+        db.close();
+        return result > 0;
+    }
 
 
 }

@@ -19,8 +19,10 @@ import java.util.Locale;
 
 import group1.pro1122.duan1.R;
 import group1.pro1122.duan1.daos.DiaDiemDAO;
+import group1.pro1122.duan1.daos.HopDongDAO;
 import group1.pro1122.duan1.daos.PhongDAO;
 import group1.pro1122.duan1.models.DiaDiem;
+import group1.pro1122.duan1.models.HopDong;
 import group1.pro1122.duan1.models.Phong;
 public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.PhongViewHolder>{
     private Context context;
@@ -30,9 +32,11 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.PhongViewHol
     ArrayList<DiaDiem> listDiaDiem;
     DiaDiemDAO diaDiemDAO;
     PhongDAO phongDAO;
+    HopDongDAO hopDongDAO;
     public PhongAdapter(Context context, ArrayList<Phong> listPhong) {
         this.context = context;
         this.listPhong = listPhong;
+        this.hopDongDAO = new HopDongDAO(context);
     }
 
     // Interface để xử lý sự kiện click
@@ -78,8 +82,8 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.PhongViewHol
                 break;
             }
         }
-        holder.tvTrangThaiHopDong.setText(phong.getTrangThaiPheduyet() == 1 ? "Đã duyệt" : "Chưa duyệt");
-        holder.tvTrangThaiHopDong.setTextColor(context.getResources().getColor(
+        holder.tvTrangThaiPheDuyet.setText(phong.getTrangThaiPheduyet() == 1 ? "Đã duyệt" : "Chưa duyệt");
+        holder.tvTrangThaiPheDuyet.setTextColor(context.getResources().getColor(
                 phong.getTrangThaiPheduyet() == 1 ? android.R.color.holo_green_dark : android.R.color.holo_red_dark
         ));
 
@@ -101,10 +105,11 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.PhongViewHol
 
         //Nút xóa
         holder.btnDelete.setOnClickListener(v -> {
+            boolean checkHopDong = hopDongDAO.checkHopDongByPhongID(phong.getPhongId());
             if (phong.getTrangThaiPheduyet() == 1) {
                 Toast.makeText(context, "Không thể xóa phòng đã được phê duyệt!", Toast.LENGTH_SHORT).show();
-            } else if (phong.getTrangThai() == 1) {
-                Toast.makeText(context, "Không thể xóa phòng đang được thuê!", Toast.LENGTH_SHORT).show();
+            } else if (phong.getTrangThai() == 1 || checkHopDong) {
+                Toast.makeText(context, "Không thể xóa phòng đã hoặc đang được thuê!", Toast.LENGTH_SHORT).show();
             } else {
                 // Hiển thị hộp thoại xác nhận xóa
                 new AlertDialog.Builder(context)
@@ -135,7 +140,7 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.PhongViewHol
     }
 
     public static class PhongViewHolder extends RecyclerView.ViewHolder {
-        TextView tvSoPhong, tvDienTich, tvTrangThai, tvGiaThue, tvTrangThaiHopDong, tvDiaDiem;
+        TextView tvSoPhong, tvDienTich, tvTrangThai, tvGiaThue, tvTrangThaiPheDuyet, tvDiaDiem;
         ImageView imgPhong, btnDelete;
         public PhongViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -145,7 +150,7 @@ public class PhongAdapter extends RecyclerView.Adapter<PhongAdapter.PhongViewHol
             tvTrangThai = itemView.findViewById(R.id.tvTrangThai);
             tvGiaThue = itemView.findViewById(R.id.tvGiaThue);
             tvDiaDiem = itemView.findViewById(R.id.tvDiaDiem);
-            tvTrangThaiHopDong = itemView.findViewById(R.id.tvTrangThaiHopDong);
+            tvTrangThaiPheDuyet = itemView.findViewById(R.id.tvTrangThaiPheDuyet);
             btnDelete = itemView.findViewById(R.id.btnDelete);
 
         }

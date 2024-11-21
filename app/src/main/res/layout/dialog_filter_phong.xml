@@ -13,7 +13,8 @@
         android:id="@+id/spinnerTrangThaiPheDuyet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/trang_thai_phe_duyet_options" />
+        android:entries="@array/trang_thai_phe_duyet_options"
+        android:backgroundTint="#FFEBEE"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,7 +24,8 @@
         android:id="@+id/spinnerTrangThaiThue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/trang_thai_thue_options"/>
+        android:entries="@array/trang_thai_thue_options"
+        android:backgroundTint="#FFF3E0"/>
 
     <TextView
         android:layout_width="match_parent"

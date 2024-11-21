@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HoSoFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,12 +11,67 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
+        android:gravity="center|top"
+        android:padding="20dp">
+        <ImageView
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Hồ sơ"
-            android:textSize="24sp"/>
+            android:src="@drawable/avatar"/>
+       <TextView
+           android:id="@+id/tvUserID"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="USER-ID: "
+           android:textStyle="bold"
+           android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tvVaiTro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vai trò: "
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tvHoTen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Họ tên: "
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tvNgaySinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vai trò: "
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vai trò: "
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tvSDT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vai trò: "
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/tvCCCD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vai trò: "
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCapNhat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="CẬP NHẬT THÔNG TIN"/>
     </LinearLayout>
 
 </FrameLayout>

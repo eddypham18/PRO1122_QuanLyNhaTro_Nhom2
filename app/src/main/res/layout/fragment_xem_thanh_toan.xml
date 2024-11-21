@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.XemThanhToanFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:iconifiedByDefault="false"
+            android:backgroundTint="#ccc"
+            android:text="Nhập tên tên tòa hoặc phố"/>
+        <ImageView
+            android:id="@+id/btnFilter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_filter_list_alt_24"
+            android:contextClickable="true"
+            android:tooltipText="Lọc"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tìm theo tên hoặc lọc theo trạng thái, ngày tạo"
+        android:textStyle="italic"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvThanhToan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:padding="8dp"/>
+    <TextView
+        android:id="@+id/tvThanhToan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Không có thanh toán"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:visibility="gone"
+        />
+</FrameLayout>

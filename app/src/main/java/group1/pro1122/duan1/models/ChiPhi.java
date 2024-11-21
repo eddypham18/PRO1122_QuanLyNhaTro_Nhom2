@@ -3,14 +3,14 @@ package group1.pro1122.duan1.models;
 public class ChiPhi {
     private int chiPhiId;
     private int phongId;
-    private String loaiChiPhi;
+    private String tenChiPhi;
     private int soTienChi;
     private String ngayPhatSinh;
 
-    public ChiPhi(int chiPhiId, int phongId, String loaiChiPhi, int soTienChi, String ngayPhatSinh) {
+    public ChiPhi(int chiPhiId, int phongId, String tenChiPhi, int soTienChi, String ngayPhatSinh) {
         this.chiPhiId = chiPhiId;
         this.phongId = phongId;
-        this.loaiChiPhi = loaiChiPhi;
+        this.tenChiPhi = tenChiPhi;
         this.soTienChi = soTienChi;
         this.ngayPhatSinh = ngayPhatSinh;
     }
@@ -31,12 +31,12 @@ public class ChiPhi {
         this.phongId = phongId;
     }
 
-    public String getLoaiChiPhi() {
-        return loaiChiPhi;
+    public String getTenChiPhi() {
+        return tenChiPhi;
     }
 
-    public void setLoaiChiPhi(String loaiChiPhi) {
-        this.loaiChiPhi = loaiChiPhi;
+    public void setTenChiPhi(String tenChiPhi) {
+        this.tenChiPhi = tenChiPhi;
     }
 
     public int getSoTienChi() {

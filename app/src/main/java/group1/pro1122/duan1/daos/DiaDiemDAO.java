@@ -43,4 +43,25 @@ public class DiaDiemDAO {
         }
         return list;
     }
+
+    public DiaDiem getDiaDiemByDiaDiemID(int diaDiemID){
+        DiaDiem diaDiem = null;
+        SQLiteDatabase database = dBhelper.getReadableDatabase();
+        database.beginTransaction();
+        try {
+            Cursor cursor = database.rawQuery("SELECT * FROM DiaDiem WHERE DiaDiem_ID = ?", new String[]{String.valueOf(diaDiemID)});
+            if(cursor.getColumnCount() > 0){
+                cursor.moveToFirst();
+                diaDiem = new DiaDiem(
+                        cursor.getInt(0),
+                        cursor.getString(1)
+                );
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            database.endTransaction();
+        }
+        return diaDiem;
+    }
 }

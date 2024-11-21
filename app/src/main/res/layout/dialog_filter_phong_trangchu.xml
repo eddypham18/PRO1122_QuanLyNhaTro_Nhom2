@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="  Chọn thành phố:  "
+        android:layout_marginTop="10dp"/>
+    <Spinner
+        android:id="@+id/spinnerDiaDiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edtGiaThueMin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Giá thuê tối thiểu"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edtGiaThueMax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Giá thuê tối đa"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edtDienTichMin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Diện tích tối thiểu"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edtDienTichMax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Diện tích tối đa"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnApDung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Áp dụng" />
+</LinearLayout>

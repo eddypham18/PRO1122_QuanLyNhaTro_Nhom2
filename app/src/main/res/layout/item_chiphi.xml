@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+           >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="#D1C4E9"
+        android:layout_margin="10dp">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/tvTenChiPhi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên chi phí"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvSoTienChi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Số tiền chi"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/tvNgayPhatSinh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ngày phát sinh"
+                android:textSize="18sp"/>
+            <TextView
+                android:id="@+id/tvPhongLienQuan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phòng liên quan: "
+                android:textSize="18sp"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/btnEdit"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_edit_24"
+            android:layout_marginBottom="30dp"/>
+        <ImageView
+            android:id="@+id/btnDelete"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_delete_forever_24"/>
+    </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

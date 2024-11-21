@@ -33,4 +33,35 @@
         <item>Trống</item>
     </string-array>
 
+    <string-array name="trang_thai_array">
+        <item>Tất cả</item>
+        <item>Đã xử lý</item>
+        <item>Chưa xử lý</item>
+    </string-array>
+    <string-array name="trang_thai_hop_dong">
+        <item>Tất cả</item>
+        <item>Đã kết thúc</item>
+        <item>Đang hiệu lực</item>
+        <item>Chưa kí kết</item>
+    </string-array>
+
+    <string-array name="trang_thai_thanhtoan">
+        <item>Tất cả</item>
+        <item>Chưa thanh toán</item>
+        <item>Đã thanh toán</item>
+    </string-array>
+
+    <string-array name="sap_xep">
+        <item>Không</item>
+        <item>Ngày tạo tăng dần</item>
+        <item>Ngày tạo giảm dần</item>
+    </string-array>
+
+    <string-array name="sap_xep_ngay">
+        <item>Tất cả</item>
+        <item>Ngày tăng dần</item>
+        <item>Ngày giảm dần</item>
+    </string-array>
+
+
 </resources>

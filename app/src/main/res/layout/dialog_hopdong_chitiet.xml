@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cộng hòa xã hội chủ nghĩa Việt Nam"
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Độc lập - Tự do - Hạnh phúc"
+            android:gravity="center"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvNgayThangNam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="Ngày 19 tháng 9 năm 2024"
+            android:textStyle="italic"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="HỢP ĐỒNG THUÊ PHÒNG"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" - Căn cứ Bộ luật Dân sự số 91/2015/QH13 ngày 24/11/2015 \n - Căn cứ vào Luật Thương mại số 36/2005/QH11 ngày 14 tháng 06 năm 2005;\n - Căn cứ vào nhu cầu và sự thỏa thuận của các bên tham gia Hợp đồng;"/>
+        <TextView
+            android:id="@+id/tvHomNayNgayThangNam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hôm nay ngày tháng năm"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BÊN CHO THUÊ (bên A): "
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvChuTro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ông/bà: "/>
+        <TextView
+            android:id="@+id/tvCCCD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CCCD: "/>
+        <TextView
+            android:id="@+id/tvNgaySinh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày sinh: "/>
+        <TextView
+            android:id="@+id/tvSDT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SĐT: "/>
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email: "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BÊN CHO THUÊ (bên B): "
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvNguoiThue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ông/bà: "/>
+        <TextView
+            android:id="@+id/tvCCCDNguoiThue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CCCD: "/>
+        <TextView
+            android:id="@+id/tvNgaySinhNguoiThue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày sinh: "/>
+        <TextView
+            android:id="@+id/tvSDTNguoiThue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SĐT: "/>
+        <TextView
+            android:id="@+id/tvEmailNguoiThue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email: "/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sau khi bàn bạc kỹ lưỡng, hai bên cùng thống nhất như sau:
+
+Bên A đồng ý cho bên B thuê 01 phòng chi tiết như sau: "/>
+        <TextView
+            android:id="@+id/tvDiaChi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Địa chỉ:  "/>
+        <TextView
+            android:id="@+id/tvSoPhong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tvSoPhong"/>
+        <TextView
+            android:id="@+id/tvGiaThue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giá thuê: "/>
+        <TextView
+            android:id="@+id/tvDienTich"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diện tích: "/>
+        <TextView
+            android:id="@+id/tvTienDien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền điện ... đ/kwh"/>
+        <TextView
+            android:id="@+id/tvTienNuoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền nước ... đ/kwh"/>
+        <TextView
+            android:id="@+id/tvTienVeSinh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền vệ sinh"/>
+        <TextView
+            android:id="@+id/tvTienGuiXe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền gửi xe"/>
+        <TextView
+            android:id="@+id/tvTienInternet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền internet" />
+        <TextView
+            android:id="@+id/tvTienThangMay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền thang máy" />
+        <TextView
+            android:id="@+id/tvGiaTriDen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hợp đồng có giá trị kể từ ngày kí kết đến: ...." />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="TRÁCH NHIỆM CỦA CÁC BÊN"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="* Trách nhiệm của bên A:
+
+\n- Tạo mọi điều kiện thuận lợi để bên B thực hiện theo hợp đồng.
+
+\n- Cung cấp nguồn điện, nước đầy đủ cho bên B sử dụng.
+
+\n* Trách nhiệm của bên B:
+
+\n- Thanh toán đầy đủ tiền theo đúng thỏa thuận.
+
+\n- Bảo quản các trang thiết bị và cơ sở vật chất của bên A trang bị cho ban đầu (làm hỏng phải sửa, mất phải đền).
+
+\n- Không được tự ý sửa chữa, cải tạo cơ sở vật chất khi chưa được sự đồng ý của bên A.
+
+\n- Luôn có ý thức giữ gìn vệ sinh trong và ngoài khu vực phòng trọ.
+
+\n- Bên B phải chấp hành mọi quy định của pháp luật Nhà nước và quy định của địa phương.
+
+\n- Nếu bên B cho khách ở qua đêm thì phải báo trước và được sự đồng ý của bên A, đồng thời phải chịu trách nhiệm về các hành vi vi phạm pháp luật của khách trong thời gian ở lại (nếu có)."/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="TRÁCH NHIỆM CHUNG"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="- Hai bên phải tạo điều kiện thuận lợi cho nhau để thực hiện hợp đồng.
+
+\n- Nếu một trong hai bên vi phạm hợp đồng trong thời gian hợp đồng vẫn còn hiệu lực thì bên còn lại có quyền đơn phương chấm dứt hợp đồng thuê nhà trọ. Ngoài ra, nếu hành vi vi phạm đó gây tổn thất cho bên bị vi phạm thì bên vi phạm sẽ phải bồi thường mọi thiệt hại đã gây ra.
+
+\n- Trong trường hợp muốn chấm dứt hợp đồng trước thời hạn, cần phải báo trước cho bên kia ít nhất 30 ngày và hai bên phải có sự thống nhất với nhau.
+
+\n- Kết thúc hợp đồng, Bên A phải trả lại đầy đủ tiền đặt cọc cho bên B.
+
+\n- Bên nào vi phạm các điều khoản chung thì phải chịu trách nhiệm trước pháp luật.
+
+\n- Hợp đồng này được lập thành tại Ứng dụng quản lý nhà trọ và được lưu trữ trong Cơ sở dữ liệu của ứng dụng. Giá trị pháp lý là duy nhất."/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvBenAKyTen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bên A"
+            android:textStyle="bold"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/tvBenBKyTen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Bên B"
+            android:textStyle="bold"
+            android:gravity="center"/>
+    </LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:visibility="invisible"
+            android:text="Ký"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="#FF0000"
+            android:layout_marginRight="25dp"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Thoát"
+            android:layout_marginTop="25dp"
+            android:backgroundTint="#8B8B8B" />
+    </LinearLayout>
+</ScrollView>
