@@ -139,7 +139,7 @@ public class UserDAO {
     public boolean updateUserInfo(User user) {
         SQLiteDatabase db = dBhelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("Username", user.getUsername());
+        values.put("HoTen", user.getHoTen());
         values.put("NgaySinh", user.getNgaySinh());
         values.put("Email", user.getEmail());
         values.put("SDT", user.getSdt());
