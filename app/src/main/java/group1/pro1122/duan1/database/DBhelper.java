@@ -13,11 +13,7 @@ import group1.pro1122.duan1.R;
 public class DBhelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "DuAn1";
-<<<<<<< HEAD
     private static final int DATABASE_VERSION = 23;
-=======
-    private static final int DATABASE_VERSION = 22;
->>>>>>> fb1f0ea4381741b2227f49642fe93f62317e2d70
     public DBhelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
