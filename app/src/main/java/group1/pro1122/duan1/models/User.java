@@ -10,13 +10,14 @@ public class User {
     private String email;
     private String sdt;
     private int trangThai;
-    private Integer cccd;
+    private String cccd;
     private String ngayTao;
 
     public User() {
+
     }
 
-    public User(int userId, String username, String password, int vaiTro, String hoTen, String ngaySinh, String email, String sdt, int trangThai, Integer cccd, String ngayTao) {
+    public User(int userId, String username, String password, int vaiTro, String hoTen, String ngaySinh, String email, String sdt, int trangThai, String cccd, String ngayTao) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -102,11 +103,11 @@ public class User {
         this.trangThai = trangThai;
     }
 
-    public Integer getCccd() {
+    public String getCccd() {
         return cccd;
     }
 
-    public void setCccd(Integer cccd) {
+    public void setCccd(String cccd) {
         this.cccd = cccd;
     }
 

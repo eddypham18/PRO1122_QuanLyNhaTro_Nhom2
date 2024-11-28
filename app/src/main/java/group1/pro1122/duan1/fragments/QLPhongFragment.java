@@ -47,10 +47,12 @@ import group1.pro1122.duan1.adapters.PhongAdapter;
 import group1.pro1122.duan1.adapters.ThanhPhoSpinnerAdapter;
 import group1.pro1122.duan1.daos.DiaDiemDAO;
 import group1.pro1122.duan1.daos.PhongDAO;
+import group1.pro1122.duan1.daos.UserDAO;
 import group1.pro1122.duan1.models.DiaDiem;
 import group1.pro1122.duan1.models.Phong;
+import group1.pro1122.duan1.models.User;
 
-public class QuanLyPhongFragment extends Fragment {
+public class QLPhongFragment extends Fragment {
 
     private static final int REQUEST_READ_EXTERNAL_STORAGE = 101;
     private static final int REQUEST_IMAGE_PICK = 100;
@@ -90,6 +92,8 @@ public class QuanLyPhongFragment extends Fragment {
         // Lấy User_ID từ SharedPreferences
         SharedPreferences pref = getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
         userID = pref.getInt("userID", 0);
+        UserDAO userDAO = new UserDAO(getContext());
+        User user = userDAO.getUserByUserID(userID);
 
         // Lấy dữ liệu từ cơ sở dữ liệu
         listPhong = phongDAO.read(userID);
@@ -104,7 +108,13 @@ public class QuanLyPhongFragment extends Fragment {
         rcvQLPhong.setAdapter(adapter);
 
         //Floating Action button
-        fab.setOnClickListener(v -> showAddPhongDialog());
+        fab.setOnClickListener(v -> {
+            if(!user.getHoTen().equals("") && !user.getSdt().equals("") && !user.getCccd().equals("") && !user.getEmail().equals("") && !user.getNgaySinh().equals("")){
+                showAddPhongDialog();
+            } else {
+                Toast.makeText(getContext(), "Vui lòng cập nhật thông tin cá nhân trước khi sử dụng chức năng!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //Nút lọc
         btnFilter.setOnClickListener(v -> {
@@ -258,12 +268,12 @@ public class QuanLyPhongFragment extends Fragment {
         // Kiểm tra trạng thái của phòng
         if (phong.getTrangThai() == 1) {
             Toast.makeText(getContext(), "Không thể cập nhật vì phòng đang được thuê!", Toast.LENGTH_SHORT).show();
-            return; // Ngừng lại nếu phòng đang được thuê
+            return;
         }
 
         if (phong.getTrangThaiPheduyet() == 1) {
             Toast.makeText(getContext(), "Không thể cập nhật vì phòng đã được phê duyệt!", Toast.LENGTH_SHORT).show();
-            return; // Ngừng lại nếu phòng đã được phê duyệt
+            return;
         }
 
         // Nếu các điều kiện trên không thỏa mãn, tiếp tục hiển thị dialog cập nhật
@@ -338,12 +348,11 @@ public class QuanLyPhongFragment extends Fragment {
             phong.setMoTa(moTa);
             phong.setDiaDiemID(idThanhPho);
 
-            // Chỉ cập nhật ảnh nếu imgPhongData không null
             if (imgPhongData != null) {
-                phong.setAnhPhong(imgPhongData); // Sử dụng ảnh mới nếu có
+                phong.setAnhPhong(imgPhongData);
             }
 
-            boolean isUpdated = phongDAO.update(phong); // Bạn cần thêm hàm update trong PhongDAO
+            boolean isUpdated = phongDAO.update(phong);
             if (isUpdated) {
                 listPhong = phongDAO.read(userID);
                 rcvQLPhong.setAdapter(new PhongAdapter(getContext(), listPhong));

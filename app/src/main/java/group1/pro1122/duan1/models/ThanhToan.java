@@ -3,15 +3,19 @@ package group1.pro1122.duan1.models;
 public class ThanhToan {
     private int thanhToanId;
     private int hopDongId;
-    private String ngayThanhToan;
-    private int soTienThanhToan;
+    private String ngayTao;
+    private int soDien;
+    private int soNuoc;
+    private int tongTien;
     private int trangThaiThanhToan;
 
-    public ThanhToan(int thanhToanId, int hopDongId, String ngayThanhToan, int soTienThanhToan, int trangThaiThanhToan) {
+    public ThanhToan(int thanhToanId, int hopDongId, String ngayTao, int soDien, int soNuoc, int tongTien, int trangThaiThanhToan) {
         this.thanhToanId = thanhToanId;
         this.hopDongId = hopDongId;
-        this.ngayThanhToan = ngayThanhToan;
-        this.soTienThanhToan = soTienThanhToan;
+        this.ngayTao = ngayTao;
+        this.soDien = soDien;
+        this.soNuoc = soNuoc;
+        this.tongTien = tongTien;
         this.trangThaiThanhToan = trangThaiThanhToan;
     }
 
@@ -31,20 +35,36 @@ public class ThanhToan {
         this.hopDongId = hopDongId;
     }
 
-    public String getNgayThanhToan() {
-        return ngayThanhToan;
+    public String getNgayTao() {
+        return ngayTao;
     }
 
-    public void setNgayThanhToan(String ngayThanhToan) {
-        this.ngayThanhToan = ngayThanhToan;
+    public void setNgayTao(String ngayTao) {
+        this.ngayTao = ngayTao;
     }
 
-    public int getSoTienThanhToan() {
-        return soTienThanhToan;
+    public int getSoDien() {
+        return soDien;
     }
 
-    public void setSoTienThanhToan(int soTienThanhToan) {
-        this.soTienThanhToan = soTienThanhToan;
+    public void setSoDien(int soDien) {
+        this.soDien = soDien;
+    }
+
+    public int getSoNuoc() {
+        return soNuoc;
+    }
+
+    public void setSoNuoc(int soNuoc) {
+        this.soNuoc = soNuoc;
+    }
+
+    public int getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(int tongTien) {
+        this.tongTien = tongTien;
     }
 
     public int getTrangThaiThanhToan() {

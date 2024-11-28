@@ -2,20 +2,46 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     tools:context=".fragments.QLBaidangFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchViewBD"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Quản lý bài đăng"
-            android:textSize="24sp"/>
+            android:layout_weight="10"
+            android:iconifiedByDefault="false"
+            android:backgroundTint="#ccc"
+            android:text="Nhập tên tên tòa hoặc phố"/>
+        <ImageView
+            android:id="@+id/btnFilterBD"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_filter_list_alt_24"
+            android:contextClickable="true"
+            android:tooltipText="Lọc"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tìm theo tên hoặc lọc theo tiêu chí"
+        android:textStyle="italic"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        />
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvQLBaiDang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:padding="8dp" />
 
 </FrameLayout>

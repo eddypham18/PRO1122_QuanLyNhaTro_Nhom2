@@ -3,10 +3,12 @@ package group1.pro1122.duan1;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import androidx.fragment.app.FragmentManager;
@@ -17,19 +19,21 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
+import group1.pro1122.duan1.daos.ThongBaoDAO;
 import group1.pro1122.duan1.fragments.DoiMatKhauFragment;
 import group1.pro1122.duan1.fragments.HoSoFragment;
 import group1.pro1122.duan1.fragments.HoTroFragment;
+import group1.pro1122.duan1.fragments.HopDongFragment;
 import group1.pro1122.duan1.fragments.QLBaidangFragment;
 import group1.pro1122.duan1.fragments.QLHopDongFragment;
 import group1.pro1122.duan1.fragments.QLHotroFragment;
 import group1.pro1122.duan1.fragments.QLThanhtoanFragment;
 import group1.pro1122.duan1.fragments.QLThuchiFragment;
 import group1.pro1122.duan1.fragments.QLUserFragment;
-import group1.pro1122.duan1.fragments.QuanLyPhongFragment;
+import group1.pro1122.duan1.fragments.QLPhongFragment;
 import group1.pro1122.duan1.fragments.ThongBaoFragment;
-import group1.pro1122.duan1.fragments.TimKiemFragment;
 import group1.pro1122.duan1.fragments.TrangChuFragment;
+import group1.pro1122.duan1.fragments.XemThanhToanFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView nvView;
     private TextView txtUser;
     FragmentManager fragmentManager;
+    ThongBaoDAO thongBaoDAO;
     private BottomNavigationView bottomNavigationView;
 
     @Override
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         toolBar = findViewById(R.id.toolBar);
         nvView = findViewById(R.id.nvView);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        thongBaoDAO = new ThongBaoDAO(this);
 
         //Set toolbar
         toolBar.setTitleTextColor(getResources().getColor(android.R.color.white));
@@ -63,13 +69,26 @@ public class MainActivity extends AppCompatActivity {
         // Đọc thông tin người dùng từ SharedPreferences
         SharedPreferences pref = getSharedPreferences("user", MODE_PRIVATE);
         boolean ghiNho = pref.getBoolean("ghinho", false);
-        String username = pref.getString("tk", "Guest");
-        int vaiTro = pref.getInt("vaiTro", -1);  // Mặc định là -1 nếu không có vai trò
+        int userID = pref.getInt("userID", -1);
+        int vaiTro = pref.getInt("vaiTro", -1);
+        String name = pref.getString("tk", null);
 
-        //Hiển thị tên người dùng
+        if (!ghiNho) {
+            Intent intent = getIntent();
+            userID = intent.getIntExtra("userID", -1);
+            vaiTro = intent.getIntExtra("vaiTro", -1);
+            name = intent.getStringExtra("name");
+        }
+
+        // Hiển thị tên người dùng
         headerView = nvView.getHeaderView(0);
         txtUser = headerView.findViewById(R.id.txtUser);
-        txtUser.setText("Xin chào " + username + "!");
+        if (name != null) {
+            txtUser.setText("Xin chào " + name + "!");
+        } else {
+            txtUser.setText("Xin chào Khách!");
+        }
+
 
         //Hiện thị chức năng theo vai trò của người dùng
         // 0: người dùng, người thuê
@@ -91,17 +110,11 @@ public class MainActivity extends AppCompatActivity {
             nvView.getMenu().findItem(R.id.nav_User).setVisible(true);
             nvView.getMenu().findItem(R.id.nav_login_prompt).setVisible(false);
             nvView.getMenu().findItem(R.id.nav_login).setVisible(false);
+            nvView.getMenu().findItem(R.id.nav_HopDong).setVisible(true);
+            nvView.getMenu().findItem(R.id.nav_ThanhToan).setVisible(true);
         } else{
             nvView.getMenu().findItem(R.id.nav_login_prompt).setVisible(true);
             nvView.getMenu().findItem(R.id.nav_login).setVisible(true);
-        }
-
-        //Nếu người dùng không chọn ghi nhớ, đặt tài khoản về Guest
-        if (!ghiNho) {
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putString("tk", "Guest");
-            editor.putInt("vaiTro", -1);
-            editor.apply();
         }
 
 
@@ -112,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.nav_QLPhong){
-                    setTitleAndFragment("Quản lý phòng trọ", new QuanLyPhongFragment());
+                    setTitleAndFragment("Quản lý phòng trọ", new QLPhongFragment());
                 } else if(item.getItemId() == R.id.nav_QLHopDong){
                     setTitleAndFragment("Quản lý hợp đồng", new QLHopDongFragment());
                 } else if(item.getItemId() == R.id.nav_QLThanhToan){
@@ -144,6 +157,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
+                } else if (item.getItemId() == R.id.nav_HopDong) {
+                    setTitleAndFragment("Hợp đồng", new HopDongFragment());
+                } else if (item.getItemId() == R.id.nav_ThanhToan){
+                    setTitleAndFragment("Phiếu thanh toán", new XemThanhToanFragment());
                 }
                 drawer.closeDrawers(); //when clicked then close
                 return true;
@@ -156,10 +173,13 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() == R.id.nav_home) {
                     setTitleAndFragment("Trang chủ", new TrangChuFragment());
-                } else if(item.getItemId() == R.id.nav_search) {
-                    setTitleAndFragment("Tìm kiếm", new TimKiemFragment());
                 } else if(item.getItemId() == R.id.nav_notifications){
                     setTitleAndFragment("Thông báo", new ThongBaoFragment());
+                    // Đánh dấu tất cả thông báo là đã đọc
+                    SharedPreferences pref = getSharedPreferences("user", MODE_PRIVATE);
+                    int userID = pref.getInt("userID", 0);
+                    thongBaoDAO.markAllNotificationsAsRead(userID);
+                    updateNotificationBadge();
                 } else if(item.getItemId() == R.id.nav_profile){
                     setTitleAndFragment("Hồ sơ", new HoSoFragment());
                 }
@@ -195,6 +215,40 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateNotificationBadge();
+    }
+
+    public void updateNotificationBadge() {
+        SharedPreferences pref = getSharedPreferences("user", MODE_PRIVATE);
+        int userID = pref.getInt("userID", 0);
+        int unreadCount = thongBaoDAO.getUnreadNotificationCount(userID);
+
+        Log.d(TAG, "updateNotificationBadge: unreadCount = "+unreadCount);
+        if (unreadCount > 0) {
+            BadgeDrawable badge = bottomNavigationView.getOrCreateBadge(R.id.nav_notifications);
+            badge.setNumber(unreadCount); // Hiển thị số thông báo chưa đọc
+            badge.setVisible(true); // Đảm bảo Badge hiển thị
+        } else {
+            bottomNavigationView.removeBadge(R.id.nav_notifications); // Ẩn Badge nếu không có thông báo chưa đọc
+        }
+    }
 
 
+    //Xóa thông tin user khi user thoát khỏi ứng dụng mà không bấm ghi nhớ
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences pref = getSharedPreferences("user", MODE_PRIVATE);
+        boolean ghiNho = pref.getBoolean("ghinho", false);
+
+        // Nếu không ghi nhớ tài khoản, xóa toàn bộ thông tin
+        if (!ghiNho) {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.clear();
+            editor.apply();
+        }
+    }
 }

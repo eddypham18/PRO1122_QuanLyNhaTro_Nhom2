@@ -33,21 +33,24 @@
                 android:layout_height="wrap_content"
                 android:text="Hợp đồng ID"
                 android:textSize="16sp"
-                android:textStyle="bold" />
-
-
-            <!-- Số phòng -->
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tvPhongID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phòng ID: "
+                android:textSize="14sp" />
             <TextView
                 android:id="@+id/tvPhong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phòng thuê: "
+                android:text="Phòng: "
                 android:textSize="14sp" />
             <TextView
-                android:id="@+id/tvToaNha"
+                android:id="@+id/tvNguoiThueID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tòa nhà: "
+                android:text="Người thuê ID: "
                 android:textSize="14sp" />
             <TextView
                 android:id="@+id/tvNguoiThue"
@@ -57,7 +60,8 @@
                 android:textSize="14sp" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,9 +76,29 @@
                     android:textStyle="bold"
                     android:layout_marginLeft="5dp"/>
             </LinearLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnXemChiTiet"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Xem chi tiết"
+                    android:layout_marginRight="5dp"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnHuyHopDong"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Hủy hợp đồng"
+                    android:backgroundTint="#898989"
+                    android:layout_marginLeft="5dp"/>
+            </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
+
 
 </androidx.cardview.widget.CardView>

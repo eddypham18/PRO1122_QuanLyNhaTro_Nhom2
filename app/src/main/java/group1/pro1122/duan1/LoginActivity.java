@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     int vaiTro = -1;
     int userID = -1;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         chkGhiNho = findViewById(R.id.chkGhiNho);
         tvQuenMatKhau = findViewById(R.id.tvQuenMatKhau);
         tvTaoTaiKhoan = findViewById(R.id.tvTaoTaiKhoan);
+        progressBar = findViewById(R.id.progressBar);
 
         // Truy vấn CSDL
         UserDAO userDAO = new UserDAO(LoginActivity.this);
@@ -65,19 +69,33 @@ public class LoginActivity extends AppCompatActivity {
                 // Kiểm tra đăng nhập
                 if(!taiKhoanEDT.equals("") && !matKhauEDT.equals("")){
                     for (User user : list) {
-                        if(user.getUsername().equals(taiKhoanEDT) && user.getPassword().equals(matKhauEDT)){
-                            check = true;
-                            userID = user.getUserId();
-                            vaiTro = user.getVaiTro();
-                            break;
+                        if (user.getUsername().equals(taiKhoanEDT) && user.getPassword().equals(matKhauEDT)) {
+                            if (user.getTrangThai() == 1) {
+                                check = true;
+                                userID = user.getUserId();
+                                vaiTro = user.getVaiTro();
+                                break;
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Tài khoản đã bị khóa!", Toast.LENGTH_SHORT).show();
+                                check = false;
+                                break;
+                            }
                         }
                     }
+
+
 
                     if(check){
                         Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
                         remember(userID, taiKhoanEDT, matKhauEDT, vaiTro, ghiNho);
+
+                        progressBar.setVisibility(View.VISIBLE);
                         new android.os.Handler().postDelayed(() -> {
+                            progressBar.setVisibility(View.GONE);
                             Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                            i.putExtra("userID", userID);
+                            i.putExtra("vaiTro", vaiTro);
+                            i.putExtra("name", taiKhoanEDT);
                             startActivity(i);
                             finish();
                         }, 3000);
@@ -98,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Nút quên mật khẩu (chưa xử lý)
+
         tvQuenMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    // Kiểm tra nếu có ghi nhớ tài khoản
+
     public void checkRemember(){
         pref = getSharedPreferences("user", MODE_PRIVATE);
         taiKhoan = pref.getString("tk", "");
@@ -117,27 +135,32 @@ public class LoginActivity extends AppCompatActivity {
         boolean chkGhiNho1 = pref.getBoolean("ghinho", false);
         chkGhiNho.setChecked(chkGhiNho1);
 
-        // Nếu ghi nhớ tài khoản được chọn, điền thông tin vào các trường
         if(chkGhiNho.isChecked()){
             edtTaiKhoan.setText(taiKhoan);
             edtMatKhau.setText(matKhau);
         } else {
-            // Nếu không ghi nhớ, khởi động lại ứng dụng với chế độ Guest
-            edtTaiKhoan.setText(""); // Để trống tài khoản
-            edtMatKhau.setText(""); // Để trống mật khẩu
+            edtTaiKhoan.setText("");
+            edtMatKhau.setText("");
         }
     }
 
-    // Lưu thông tin đăng nhập vào SharedPreferences
-    public void remember(int userID, String tk, String mk, int vaiTro, boolean chkGhiNho){
+
+    public void remember(int userID, String tk, String mk, int vaiTro, boolean chkGhiNho) {
         pref = getSharedPreferences("user", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putInt("userID", userID);
-        editor.putString("tk", tk);
-        editor.putString("mk", mk);
         editor.putInt("vaiTro", vaiTro);
-        editor.putBoolean("ghinho", chkGhiNho);
+
+        // Nếu người dùng chọn ghi nhớ, lưu thêm tài khoản và mật khẩu
+        if (chkGhiNho) {
+            editor.putString("tk", tk);
+            editor.putString("mk", mk);
+            editor.putBoolean("ghinho", true);
+        } else {
+            editor.putBoolean("ghinho", false);
+        }
         editor.apply();
     }
+
 
 }

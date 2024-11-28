@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="#F1F0F0">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PHIẾU THANH TOÁN"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"/>
+        <TextView
+            android:id="@+id/tvNguoiThue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên khách hàng: "/>
+        <TextView
+            android:id="@+id/tvSDT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SĐT: "/>
+        <TextView
+            android:id="@+id/tvPhong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phòng: "/>
+        <TextView
+            android:id="@+id/tvHopDongID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hợp đồng ID: "/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chi tiết các dịch vụ"
+            android:textColor="@color/black"
+            android:layout_gravity="center"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"/>
+        <TextView
+            android:id="@+id/tvTienDien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền điện: "/>
+        <TextView
+            android:id="@+id/tvTienNuoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền nước: "/>
+        <TextView
+            android:id="@+id/tvTienVeSinh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền vệ sinh: "/>
+        <TextView
+            android:id="@+id/tvTienGuiXe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền gửi xe: "/>
+        <TextView
+            android:id="@+id/tvTienInternet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền Internet: "/>
+        <TextView
+            android:id="@+id/tvThangMay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền thang máy:  "/>
+        <TextView
+            android:id="@+id/tvTienPhong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tiền phòng:  "/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trạng thái thanh toán: "/>
+            <TextView
+                android:id="@+id/tvTrangThaiThanhToan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chưa thanh toán"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTongTien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tổng tiền: "
+            android:textStyle="bold"
+            android:textColor="#FF0000"/>
+        <TextView
+            android:id="@+id/tvNgayTao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textStyle="italic"
+            android:layout_marginRight="30dp"
+            android:text="Ngày tạo"/>
+        <LinearLayout
+            android:id="@+id/layoutPhieuThanhToan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDoiTrangThai"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Đổi trạng thái"
+                android:layout_marginRight="5dp"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnXoa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Xóa"
+                android:layout_marginLeft="5dp"
+                android:backgroundTint="#E53935"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

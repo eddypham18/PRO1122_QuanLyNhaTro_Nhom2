@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="  Chọn trạng thái hợp đồng: "/>
+    <Spinner
+        android:id="@+id/spinnerTrangThaiHopDong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/trang_thai_hop_dong"
+        android:backgroundTint="#FFEBEE"/>
+    <Button
+        android:id="@+id/btnApDung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Áp dụng" />
+</LinearLayout>

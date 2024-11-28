@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TẠO HỢP ĐỒNG"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="24dp"/>
+        <EditText
+            android:id="@+id/edtPhongId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phòng ID"
+            android:inputType="number"/>
+
+
+        <EditText
+            android:id="@+id/edtNguoiThue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Người thuê (ID)"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/edtDonGiaDien"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Đơn giá điện"
+            android:inputType="number" />
+        <EditText
+            android:id="@+id/edtDonGiaNuoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Đơn giá nước"
+            android:inputType="number" />
+        <EditText
+            android:id="@+id/edtVeSinh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tiền vệ sinh"
+            android:inputType="number" />
+        <EditText
+            android:id="@+id/edtGuiXe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tiền gửi xe (nếu có)"
+            android:inputType="number" />
+        <EditText
+            android:id="@+id/edtInternet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tiền Internet"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/edtThangMay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tiền Thang máy (nếu có)"
+            android:inputType="number" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tạo"
+            android:backgroundTint="@color/maincolor"
+            app:cornerRadius="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            />
+</LinearLayout>

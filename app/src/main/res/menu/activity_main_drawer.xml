@@ -49,6 +49,16 @@
             android:visible="false">
             <menu>
                 <item
+                    android:id="@+id/nav_HopDong"
+                    android:icon="@drawable/baseline_list_alt_24"
+                    android:title="Hợp đồng"
+                    android:visible="false"/>
+                <item
+                    android:id="@+id/nav_ThanhToan"
+                    android:icon="@drawable/baseline_attach_money_24"
+                    android:title="Thanh toán"
+                    android:visible="false"/>
+                <item
                     android:id="@+id/nav_HoTro"
                     android:icon="@drawable/baseline_support_agent_24"
                     android:title="Gửi yêu cầu hỗ trợ"/>

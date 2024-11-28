@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    tools:context=".fragments.QuanLyPhongFragment">
+    tools:context=".fragments.QLPhongFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -27,13 +27,20 @@
             android:contextClickable="true"
             android:tooltipText="Lọc"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tìm theo tên phòng hoặc lọc theo tiêu chí"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
+        android:textStyle="italic"/>
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcvQLPhong"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="60dp"
         android:padding="8dp" />
 
     <!-- FloatingActionButton -->

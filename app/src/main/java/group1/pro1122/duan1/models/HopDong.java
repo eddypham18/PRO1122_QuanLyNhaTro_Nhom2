@@ -7,18 +7,16 @@ public class HopDong {
     private int chuTro;
     private int phiDichVuId;
     private String ngayTaoHopDong;
-    private int kyThanhToan;
     private String ngayKetThuc;
     private int trangThaiHopDong;
 
-    public HopDong(int hopDongId, int phongId, int userId, int chuTro, int phiDichVuId, String ngayTaoHopDong, int kyThanhToan, String ngayKetThuc, int trangThaiHopDong) {
+    public HopDong(int hopDongId, int phongId, int userId, int chuTro, int phiDichVuId, String ngayTaoHopDong, String ngayKetThuc, int trangThaiHopDong) {
         this.hopDongId = hopDongId;
         this.phongId = phongId;
         this.userId = userId;
         this.chuTro = chuTro;
         this.phiDichVuId = phiDichVuId;
         this.ngayTaoHopDong = ngayTaoHopDong;
-        this.kyThanhToan = kyThanhToan;
         this.ngayKetThuc = ngayKetThuc;
         this.trangThaiHopDong = trangThaiHopDong;
     }
@@ -69,14 +67,6 @@ public class HopDong {
 
     public void setNgayTaoHopDong(String ngayTaoHopDong) {
         this.ngayTaoHopDong = ngayTaoHopDong;
-    }
-
-    public int getKyThanhToan() {
-        return kyThanhToan;
-    }
-
-    public void setKyThanhToan(int kyThanhToan) {
-        this.kyThanhToan = kyThanhToan;
     }
 
     public String getNgayKetThuc() {
