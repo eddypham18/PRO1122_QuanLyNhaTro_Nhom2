@@ -71,10 +71,6 @@ public class HopDongFragment extends Fragment {
         hopDongDAO = new HopDongDAO(getContext());
         listHopDong = hopDongDAO.readByIDNguoiThue(nguoiThue);
 
-
-        //Cập nhật trạng của hợp đồng nếu hợp đồng hết hạn:
-        hopDongDAO.capNhatTrangThaiHopDongHetHan();
-
         //Khởi tọa adapter
         if(listHopDong != null){
             adapter = new HopDongNguoiThueAdapter(getContext(), listHopDong);

@@ -99,4 +99,31 @@ public class ThongBaoDAO {
         return rowsDeleted > 0;
     }
 
+    public String getNgayGuiThongBaoCuoi(int hopDongID) {
+        SQLiteDatabase db = dBhelper.getReadableDatabase();
+        String ngayGuiThongBaoCuoi = null;
+
+        // Câu truy vấn
+        String query = "SELECT NgayGuiThongBao " +
+                "FROM ThongBao " +
+                "WHERE HopDong_ID = ? AND LoaiThongBao = 1 " +
+                "ORDER BY NgayGuiThongBao DESC " +
+                "LIMIT 1";
+
+        // Thực hiện truy vấn
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(hopDongID)});
+
+        if (cursor.moveToFirst()) {
+            // Lấy giá trị của cột NgayGuiThongBao
+            ngayGuiThongBaoCuoi = cursor.getString(cursor.getColumnIndexOrThrow("NgayGuiThongBao"));
+        }
+
+        // Đóng cursor và database
+        cursor.close();
+        db.close();
+
+        return ngayGuiThongBaoCuoi;
+    }
+
+
 }

@@ -181,44 +181,23 @@ public class HopDongDAO {
         return exists;
     }
 
-    public void capNhatTrangThaiHopDongHetHan() {
+
+    public boolean capNhatTrangThaiHopDongHetHan(int hopDongId) {
         SQLiteDatabase db = dBhelper.getWritableDatabase();
-        String query = "SELECT HopDong_ID, NgayKetThuc FROM HopDong WHERE TrangThaiHopDong != 0";
-        Cursor cursor = db.rawQuery(query, null);
 
-        if (cursor != null) {
-            while (cursor.moveToNext()) {
-                int hopDongID = cursor.getInt(cursor.getColumnIndexOrThrow("HopDong_ID"));
-                String ngayKetThuc = cursor.getString(cursor.getColumnIndexOrThrow("NgayKetThuc"));
+        // Câu lệnh SQL để cập nhật trạng thái hợp đồng thành 0 (hết hạn)
+        ContentValues values = new ContentValues();
+        values.put("TrangThaiHopDong", 0); // Trạng thái 0 = hết hạn
 
-                // So sánh ngày hết hạn với ngày hiện tại
-                if (isExpired(ngayKetThuc)) {
-                    ContentValues values = new ContentValues();
-                    values.put("TrangThaiHopDong", 0); // Đổi trạng thái thành "0" (đã hết hạn)
+        // Cập nhật trạng thái hợp đồng trong cơ sở dữ liệu
+        int rowsAffected = db.update("HopDong", values, "HopDong_ID = ?", new String[]{String.valueOf(hopDongId)});
 
-                    db.update("HopDong", values, "HopDong_ID = ?", new String[]{String.valueOf(hopDongID)});
-                }
-            }
-            cursor.close();
-        }
+        db.close(); // Đóng kết nối cơ sở dữ liệu
 
-        db.close();
+        // Trả về true nếu có dòng bị ảnh hưởng (tức là hợp đồng đã được cập nhật), ngược lại false
+        return rowsAffected > 0;
     }
 
-    // Hàm kiểm tra ngày hết hạn
-    private boolean isExpired(String ngayKetThuc) {
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-            Date ngayHetHan = sdf.parse(ngayKetThuc);
-            Date ngayHienTai = new Date();
-
-            // Kiểm tra nếu ngày hết hạn trước ngày hiện tại
-            return ngayHetHan != null && ngayHetHan.before(ngayHienTai);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     public HopDong getHopDongDangHieuLucByPhongID(int phongID) {
         SQLiteDatabase db = dBhelper.getReadableDatabase();

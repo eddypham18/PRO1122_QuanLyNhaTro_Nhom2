@@ -44,6 +44,8 @@ import group1.pro1122.duan1.models.ThongBao;
 
 public class QLHopDongFragment extends Fragment {
 
+    String TAG = "zzzzzzzzzzzz";
+
     private RecyclerView rcvHopDong;
     private FloatingActionButton fab;
     private HopDongAdapter adapter;
@@ -78,6 +80,7 @@ public class QLHopDongFragment extends Fragment {
         searchView = view.findViewById(R.id.searchView);
         btnFilter = view.findViewById(R.id.btnFilter);
         adapter = new HopDongAdapter(getContext(), listHopDong);
+        thongBaoDAO = new ThongBaoDAO(getContext());
         refreshList();
 
         //Khởi tọa adapter
@@ -90,35 +93,66 @@ public class QLHopDongFragment extends Fragment {
 
             //Kiểm tra xem có hợp đồng nào đến hạn thanh toán tiền phòng không - sau đó gửi thông báo để chủ trọ có thể biết
             for(HopDong hopDong : listHopDong){
-                if(hopDong.getTrangThaiHopDong() == 1 && hopDong.getNgayTaoHopDong() != null){
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-                    String ngayBatDau = hopDong.getNgayTaoHopDong();
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(new Date());
-                    calendar.add(Calendar.MONTH, 1);
-                    String ngayKetThuc = sdf.format(calendar.getTime());
-                    String ngayHienTai = sdf.format(new Date());
+                if(hopDong.getTrangThaiHopDong() == 1){
+                    try {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                        Date ngayBatDau = sdf.parse(hopDong.getNgayTaoHopDong());
+                        Date ngayHienTai = new Date();
 
-                    if(ngayKetThuc.equals(ngayBatDau)){
-                        int chuTro = hopDong.getChuTro();
-                        int loaiThongBao = 1; // 1 là thông báo về phiếu thanh toán
-                        String noiDung = "Hợp đồng ID số "+hopDong.getHopDongId()+" đã đến hạn thanh toán tiền phòng. Vui lòng kiểm tra và tạo phiếu thanh toán!";
-                        thongBaoDAO.sendThongBao(chuTro, hopDong.getHopDongId(), loaiThongBao, noiDung);
-                    }
+                        Log.d(TAG, "onViewCreated: ngayBatDau của HĐ "+ hopDong.getHopDongId()+ " = " +ngayBatDau);
+                        Log.d(TAG, "onViewCreated: ngayHienTai của HĐ"+ hopDong.getHopDongId()+ " = "+ngayHienTai);
 
-                    if(ngayHienTai.equals(hopDong.getNgayKetThuc())){
-                        //Cập nhật trạng của hợp đồng nếu hợp đồng hết hạn:
-                        hopDongDAO.capNhatTrangThaiHopDongHetHan();
+                        // Lấy ngày gửi thông báo cuối hoặc ngày bắt đầu (nếu chưa có ngày gửi thông báo)
+                        Date ngayGuiThongBaoCuoi = thongBaoDAO.getNgayGuiThongBaoCuoi(hopDong.getHopDongId()) != null
+                                ? new Date(Long.parseLong(thongBaoDAO.getNgayGuiThongBaoCuoi(hopDong.getHopDongId())))
+                                : ngayBatDau;
 
-                        // Thông báo cho chủ trọ và người thuê
-                        String noiDung = "Hợp đồng số "+hopDong.getHopDongId() +" của phòng " + hopDong.getPhongId() + " đã hết hạn. Vui lòng kiểm tra!";
+                        Log.d(TAG, "onViewCreated: ngayGuiThongBaoCuoi "+ hopDong.getHopDongId()+ " = "+ngayGuiThongBaoCuoi.toString());
+                        // Tính khoảng cách ngày
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(ngayGuiThongBaoCuoi);
+                        calendar.add(Calendar.DAY_OF_MONTH, 30); // Thay đổi ngày để test ở đây nhé AE
 
-                        // Gửi thông báo cho chủ trọ
-                        thongBaoDAO.sendThongBao(hopDong.getChuTro(), hopDong.getHopDongId(), 2, noiDung);
+                        if (!ngayHienTai.before(calendar.getTime())) { // Nếu đã qua 30 ngày
+                            // Gửi thông báo cho chủ trọ
+                            int chuTro = hopDong.getChuTro();
+                            String noiDung = "Hợp đồng ID số " + hopDong.getHopDongId()
+                                    + " cần thanh toán tiền phòng. Vui lòng kiểm tra!";
+                            boolean check = thongBaoDAO.sendThongBao(chuTro, hopDong.getHopDongId(), 1, noiDung); // Loại 1: thông báo thanh toán
 
-                        // Gửi thông báo cho người thuê
-                        thongBaoDAO.sendThongBao(hopDong.getUserId(), hopDong.getHopDongId(), 2, noiDung);
+                            if (check) {
+                                Log.d("ThongBao", "Gửi thông báo thanh toán thành công");
+                            } else {
+                                Log.d("ThongBao", "Gửi thông báo thanh toán thất bại");
+                            }
+                        }
 
+
+                        // Kiểm tra xem hợp đồng nào đã hết hạn chưa
+                        Date ngayKetThuc = sdf.parse(hopDong.getNgayKetThuc());
+                        Log.d(TAG, "onViewCreated: ngayKetThuc của HĐ " + hopDong.getHopDongId() + " = " + ngayKetThuc);
+                        // Nếu ngày hiện tại bằng hoặc sau ngày kết thúc hợp đồng
+                        if (!ngayHienTai.before(ngayKetThuc)) {
+                            if (hopDong.getTrangThaiHopDong() != 0) { // Trạng thái 0 là đã hết hạn
+                                hopDongDAO.capNhatTrangThaiHopDongHetHan(hopDong.getHopDongId());
+
+                                // Tạo nội dung thông báo
+                                String noiDungHopDong = "Hợp đồng số " + hopDong.getHopDongId()
+                                        + " của phòng " + hopDong.getPhongId()
+                                        + " đã hết hạn. Vui lòng kiểm tra!";
+
+                                // Gửi thông báo cho chủ trọ
+                                thongBaoDAO.sendThongBao(hopDong.getChuTro(), hopDong.getHopDongId(), 2, noiDungHopDong);
+
+                                // Gửi thông báo cho người thuê
+                                thongBaoDAO.sendThongBao(hopDong.getUserId(), hopDong.getHopDongId(), 2, noiDungHopDong);
+
+                                Log.d(TAG, "onViewCreated: Đã cập nhật trạng thái và gửi thông báo cho HĐ " + hopDong.getHopDongId());
+                            }
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             }
@@ -283,7 +317,7 @@ public class QLHopDongFragment extends Fragment {
 
             // Tính ngày kết thúc hợp đồng (1 năm sau)
             Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.YEAR, 1);
+            calendar.add(Calendar.YEAR, 1); //Thay đổi để kiểm tra thời gian ở đây nhé AE
             String ngayKetThuc = sdf.format(calendar.getTime());
 
             // Tạo đối tượng HopDong và chèn vào cơ sở dữ liệu
