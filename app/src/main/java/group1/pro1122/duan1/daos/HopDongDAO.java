@@ -168,16 +168,16 @@ public class HopDongDAO {
 
     public boolean checkHopDongByPhongID(int phongID) {
         SQLiteDatabase db = dBhelper.getReadableDatabase();
-        String query = "SELECT 1 FROM HopDong WHERE Phong_ID = ? LIMIT 1"; // Lấy kết quả đầu tiên nếu có
+        String query = "SELECT 1 FROM HopDong WHERE Phong_ID = ? LIMIT 1";
         Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(phongID)});
         boolean exists = false;
 
         if (cursor != null) {
-            exists = cursor.moveToFirst(); // Kiểm tra nếu có bất kỳ dòng nào
-            cursor.close(); // Đóng con trỏ
+            exists = cursor.moveToFirst();
+            cursor.close();
         }
 
-        db.close(); // Đóng cơ sở dữ liệu
+        db.close();
         return exists;
     }
 

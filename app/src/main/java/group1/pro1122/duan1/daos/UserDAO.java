@@ -151,4 +151,12 @@ public class UserDAO {
     }
 
 
+    public boolean checkCCCD(String cccd) {
+        SQLiteDatabase db = dBhelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM User WHERE CCCD = ?", new String[]{cccd});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        return exists;
+    }
+
 }

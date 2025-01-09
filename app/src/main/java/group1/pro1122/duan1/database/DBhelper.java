@@ -13,7 +13,7 @@ import group1.pro1122.duan1.R;
 public class DBhelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "DuAn1";
-    private static final int DATABASE_VERSION = 23;
+    private static final int DATABASE_VERSION = 24;
     public DBhelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -216,19 +216,18 @@ public class DBhelper extends SQLiteOpenHelper {
 
         // Bảng Phong
         db.execSQL("INSERT INTO Phong (ChuSoHuu, PheDuyetBoi, SoPhong, DienTich, TrangThai, GiaThue, AnhPhong, MoTa, NgayTao, TrangThaiPheDuyet, DiaDiem_ID) VALUES " +
-                "(2, 3, 'P101', 25, 0, 3000000, X'89504E470D0A1A0A', 'Phòng khép kín, không chung chủ, giờ giấc tự do. Gần trường CĐ FPT Polytechnic. Liên hệ để biết thêm thông tin: 0931.333.399', 1704067200, 0, 1)," +
-                "(2, 3, 'P102', 20, 0, 2500000, X'89504E470D0A1A0A', 'Phòng mới xây, có gác lửng, tiện nghi đầy đủ. Gần chợ và các tiện ích. Liên hệ: 0932.444.400', 1704153600, 0, 2)," +
-                "(2, 3, 'P103', 30, 0, 4000000, X'89504E470D0A1A0A', 'Phòng rộng, thoáng mát, có ban công và chỗ để xe miễn phí. Gần công viên và khu dân cư an ninh. Liên hệ: 0911.555.501', 1704240000, 0, 3)," +
-                "(2, 3, 'P104', 18, 0, 2200000, X'89504E470D0A1A0A', 'Phòng nhỏ gọn, phù hợp cho sinh viên, gần đại học Bách Khoa. Internet tốc độ cao miễn phí. Liên hệ: 0987.666.602', 1704326400, 0, 4)," +
-                "(2, 3, 'P105', 28, 0, 3700000, X'89504E470D0A1A0A', 'Phòng có điều hòa, máy nước nóng, tiện nghi hiện đại. Cách trung tâm thành phố 10 phút đi xe. Liên hệ: 0976.777.703', 1704412800, 0, 1);");
+                "(2, 3, 'Quỳnh Liên P101', 25, 0, 3000000, X'89504E470D0A1A0A', 'Phòng khép kín, không chung chủ, giờ giấc tự do. Gần trường CĐ FPT Polytechnic. Liên hệ để biết thêm thông tin: 0931.333.399', 1704067200, 0, 1)," +
+                "(2, 3, 'Quỳnh Liên P102', 20, 0, 2500000, X'89504E470D0A1A0A', 'Phòng mới xây, có gác lửng, tiện nghi đầy đủ. Gần chợ và các tiện ích. Liên hệ: 0932.444.400', 1704153600, 0, 2)," +
+                "(2, 3, 'Hongkong T505', 30, 0, 4000000, X'89504E470D0A1A0A', 'Phòng rộng, thoáng mát, có ban công và chỗ để xe miễn phí. Gần công viên và khu dân cư an ninh. Liên hệ: 0911.555.501', 1704240000, 0, 3)," +
+                "(2, 3, 'Hongkong T501', 18, 0, 2200000, X'89504E470D0A1A0A', 'Phòng nhỏ gọn, phù hợp cho sinh viên, gần đại học Bách Khoa. Internet tốc độ cao miễn phí. Liên hệ: 0987.666.602', 1704326400, 0, 4)," +
+                "(2, 3, 'Hongkong T502', 28, 0, 3700000, X'89504E470D0A1A0A', 'Phòng có điều hòa, máy nước nóng, tiện nghi hiện đại. Cách trung tâm thành phố 10 phút đi xe. Liên hệ: 0976.777.703', 1704412800, 0, 1);");
 
 // Bảng ChiPhi
         db.execSQL("INSERT INTO ChiPhi (Phong_ID, TenChiPhi, SoTienChi, NgayPhatSinh) VALUES " +
                 "(1, 'Bảo dưỡng điều hòa', 200000, 1707955200)," +
                 "(2, 'Sửa TV', 150000, 1708041600)," +
-                "(3, 'Vệ sinh phòng', 90000, 1708128000)," +
-                "(4, 'Mua giường mới', 2500000, 1708214400)," +
-                "(5, 'Sửa đường nước', 400000, 1708300800);");
+                "(3, 'Vệ sinh phòng', 90000, 1708128000);");
+
 
 
 

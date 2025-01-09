@@ -121,41 +121,58 @@ public class HoSoFragment extends Fragment {
             // Kiểm tra dữ liệu hợp lệ
             if (hoTen.isEmpty() || ngaySinh.isEmpty() || email.isEmpty() || sdt.isEmpty() || cccd.isEmpty()) {
                 Toast.makeText(getContext(), "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-            } else if (!email.matches(emailRegex)) {
+                return;
+            };
+            if (!email.matches(emailRegex)) {
                 Toast.makeText(getContext(), "Email không hợp lệ", Toast.LENGTH_SHORT).show();
-            } else if (!ngaySinh.matches(ngaySinhRegex)) {
+                return;
+            };
+            if (!ngaySinh.matches(ngaySinhRegex)) {
                 Toast.makeText(getContext(), "Ngày sinh không hợp lệ. Định dạng dd/MM/yyyy hoặc dd-MM-yyyy", Toast.LENGTH_SHORT).show();
-            } else if (sdt.length() != 10) {
+                return;
+            };
+            if (sdt.length() != 10) {
                 Toast.makeText(getContext(), "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
-            } else if (cccd.length() != 12) {
-                Toast.makeText(getContext(), "CCCD không hợp lệ", Toast.LENGTH_SHORT).show();
-            } else {
-                user.setHoTen(hoTen);
-                user.setNgaySinh(ngaySinh);
-                user.setEmail(email);
-                user.setSdt(sdt);
-                user.setCccd(cccd);
+                return;
+            };
+            if (cccd.length() != 12) {
+                Toast.makeText(getContext(), "CCCD có 12 số", Toast.LENGTH_SHORT).show();
+                return;
+            };
 
-                if (userDAO.updateUserInfo(user)) {
-                    Toast.makeText(getContext(), "Cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
-                    tvUserID.setText("ID: " + user.getUserId());
-                    if(user.getVaiTro() == 0){
-                        tvVaiTro.setText("Vai trò: Người dùng");
-                    } else if (user.getVaiTro() == 1) {
-                        tvVaiTro.setText("Vai trò: Chủ trọ");
-                    } else {
-                        tvVaiTro.setText("Vai trò: Admin");
-                    }
-                    tvHoTen.setText("Họ tên: " + user.getHoTen());
-                    tvNgaySinh.setText("Ngày sinh: " + user.getNgaySinh());
-                    tvEmail.setText("Email: " + user.getEmail());
-                    tvSDT.setText("Số điện thoại: " + user.getSdt());
-                    tvCCCD.setText("CCCD: " + user.getCccd());
-                    alertDialog.dismiss();
+            boolean check = userDAO.checkCCCD(cccd);
+            if(check){
+                Toast.makeText(getContext(), "CCCD đã tồn tại", Toast.LENGTH_SHORT).show();
+                return;
+            };
+
+
+            user.setHoTen(hoTen);
+            user.setNgaySinh(ngaySinh);
+            user.setEmail(email);
+            user.setSdt(sdt);
+            user.setCccd(cccd);
+
+            if (userDAO.updateUserInfo(user)) {
+                Toast.makeText(getContext(), "Cập nhật thông tin thành công", Toast.LENGTH_SHORT).show();
+                tvUserID.setText("ID: " + user.getUserId());
+                if(user.getVaiTro() == 0){
+                    tvVaiTro.setText("Vai trò: Người dùng");
+                } else if (user.getVaiTro() == 1) {
+                    tvVaiTro.setText("Vai trò: Chủ trọ");
                 } else {
-                    Toast.makeText(getContext(), "Cập nhật thông tin thất bại", Toast.LENGTH_SHORT).show();
+                    tvVaiTro.setText("Vai trò: Admin");
                 }
+                tvHoTen.setText("Họ tên: " + user.getHoTen());
+                tvNgaySinh.setText("Ngày sinh: " + user.getNgaySinh());
+                tvEmail.setText("Email: " + user.getEmail());
+                tvSDT.setText("Số điện thoại: " + user.getSdt());
+                tvCCCD.setText("CCCD: " + user.getCccd());
+                alertDialog.dismiss();
+            } else {
+                Toast.makeText(getContext(), "Cập nhật thông tin thất bại", Toast.LENGTH_SHORT).show();
             }
+
         });
         alertDialog.show();
     }

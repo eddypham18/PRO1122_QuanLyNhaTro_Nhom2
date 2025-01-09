@@ -109,7 +109,17 @@ public class QLPhongFragment extends Fragment {
 
         //Floating Action button
         fab.setOnClickListener(v -> {
-            if(!user.getHoTen().equals("") && !user.getSdt().equals("") && !user.getCccd().equals("") && !user.getEmail().equals("") && !user.getNgaySinh().equals("")){
+            if (user != null &&
+                    user.getHoTen() != null &&
+                    !user.getHoTen().isEmpty() &&
+                    user.getSdt() != null &&
+                    !user.getSdt().isEmpty() &&
+                    user.getCccd() != null &&
+                    !user.getCccd().isEmpty() &&
+                    user.getEmail() != null &&
+                    !user.getEmail().isEmpty() &&
+                    user.getNgaySinh() != null &&
+                    !user.getNgaySinh().isEmpty()) {
                 showAddPhongDialog();
             } else {
                 Toast.makeText(getContext(), "Vui lòng cập nhật thông tin cá nhân trước khi sử dụng chức năng!", Toast.LENGTH_SHORT).show();

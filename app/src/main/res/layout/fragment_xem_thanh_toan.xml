@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tìm theo tên hoặc lọc theo trạng thái, ngày tạo"
+        android:text="Tìm theo tên phòng hoặc lọc theo trạng thái, ngày tạo"
         android:textStyle="italic"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"

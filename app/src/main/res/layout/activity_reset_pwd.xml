@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ResetPwdActivity"
     android:orientation="vertical"
-    android:gravity="center | top"
+    android:gravity="center|top"
     android:paddingLeft="20dp"
     android:paddingRight="20dp">
     <TextView

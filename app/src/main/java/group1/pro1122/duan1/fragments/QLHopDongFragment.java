@@ -1,6 +1,7 @@
 package group1.pro1122.duan1.fragments;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -83,6 +84,18 @@ public class QLHopDongFragment extends Fragment {
         thongBaoDAO = new ThongBaoDAO(getContext());
         refreshList();
 
+        // Nhận dữ liệu từ Bundle
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            int nguoiDungID = bundle.getInt("NguoiDungID", -1);
+            int phongID = bundle.getInt("PhongID", -1);
+
+            // Kiểm tra và mở dialog nếu có dữ liệu hợp lệ
+            if (nguoiDungID != -1 && phongID != -1) {
+                showAddHopDongDialog(nguoiDungID, phongID);
+            }
+        }
+
         //Khởi tọa adapter
         if(listHopDong != null){
             adapter = new HopDongAdapter(getContext(), listHopDong);
@@ -108,12 +121,11 @@ public class QLHopDongFragment extends Fragment {
                                 : ngayBatDau;
 
                         Log.d(TAG, "onViewCreated: ngayGuiThongBaoCuoi "+ hopDong.getHopDongId()+ " = "+ngayGuiThongBaoCuoi.toString());
-                        // Tính khoảng cách ngày
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTime(ngayGuiThongBaoCuoi);
                         calendar.add(Calendar.DAY_OF_MONTH, 30); // Thay đổi ngày để test ở đây nhé AE
 
-                        if (!ngayHienTai.before(calendar.getTime())) { // Nếu đã qua 30 ngày
+                        if (!ngayHienTai.before(calendar.getTime())) {
                             // Gửi thông báo cho chủ trọ
                             int chuTro = hopDong.getChuTro();
                             String noiDung = "Hợp đồng ID số " + hopDong.getHopDongId()
@@ -182,7 +194,7 @@ public class QLHopDongFragment extends Fragment {
         btnFilter.setOnClickListener(v -> showFilterDialog());
 
         fab.setOnClickListener(v -> {
-            showAddHopDongDialog();
+            showAddHopDongDialog(-1, -1);
         });
     }
 
@@ -243,7 +255,12 @@ public class QLHopDongFragment extends Fragment {
         rcvHopDong.setAdapter(adapter);
     }
 
-    public void showAddHopDongDialog(){
+    public void showAddHopDongDialog(int nguoiDungID, int phongID){
+        Context context = getContext();
+        if (context == null) {
+            Log.e("QLHopDongFragment", "Context is null, cannot show dialog");
+            return;
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_hopdong, null);
@@ -259,6 +276,12 @@ public class QLHopDongFragment extends Fragment {
         EditText edtInternet = view.findViewById(R.id.edtInternet);
         EditText edtThangMay = view.findViewById(R.id.edtThangMay);
         Button btnTao = view.findViewById(R.id.btnTao);
+
+        // Gán giá trị nhận được vào các trường
+        if(nguoiDungID != -1 && phongID != -1){
+            edtPhongId.setText(String.valueOf(phongID));
+            edtNguoiThue.setText(String.valueOf(nguoiDungID));
+        }
 
 
         AlertDialog alertDialog = builder.create();
@@ -317,7 +340,7 @@ public class QLHopDongFragment extends Fragment {
 
             // Tính ngày kết thúc hợp đồng (1 năm sau)
             Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.YEAR, 1); //Thay đổi để kiểm tra thời gian ở đây nhé AE
+            calendar.add(Calendar.YEAR, 1); //Thay đổi thời gian của hợp đồng để test ở đây nhé AE
             String ngayKetThuc = sdf.format(calendar.getTime());
 
             // Tạo đối tượng HopDong và chèn vào cơ sở dữ liệu

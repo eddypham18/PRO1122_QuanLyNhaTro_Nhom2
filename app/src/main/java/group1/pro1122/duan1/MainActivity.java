@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         thongBaoDAO = new ThongBaoDAO(this);
 
+
         //Set toolbar
         toolBar.setTitleTextColor(getResources().getColor(android.R.color.white));
         setSupportActionBar(toolBar);
@@ -250,5 +251,36 @@ public class MainActivity extends AppCompatActivity {
             editor.clear();
             editor.apply();
         }
+    }
+
+    public void openQLHopDongFragment(int nguoiDungID, int phongID) {
+        QLHopDongFragment qlHopDongFragment = new QLHopDongFragment();
+
+        // Gửi dữ liệu sang QLHopDongFragment
+        Bundle bundle = new Bundle();
+        bundle.putInt("NguoiDungID", nguoiDungID);
+        bundle.putInt("PhongID", phongID);
+        qlHopDongFragment.setArguments(bundle);
+
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, qlHopDongFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void openHopDongFragment() {
+        HopDongFragment hopDongFragment = new HopDongFragment();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, hopDongFragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void openThanhToanFragment() {
+        XemThanhToanFragment xemThanhToanFragment = new XemThanhToanFragment();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, xemThanhToanFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }
